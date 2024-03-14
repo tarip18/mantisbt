@@ -213,20 +213,20 @@ layout_page_begin();
 		if( $t_suggested_handler_id == NO_USER && access_has_bug_level( config_get( 'handle_bug_threshold' ), $f_bug_id ) ) {
 			$t_suggested_handler_id = $t_current_user_id;
 		}
-
+	
 ?>
 <!-- Assigned To -->
-			<tr>
-				<th class="category">
-					<?php echo lang_get( 'assigned_to' ) ?>
-				</th>
-				<td>
-					<select name="handler_id" class="input-sm">
-						<option value="0"></option>
-						<?php print_assign_to_option_list( $t_suggested_handler_id, $t_bug->project_id ) ?>
-					</select>
-				</td>
-			</tr>
+		<!-- <tr>
+			<th class="category">
+				<?php echo lang_get( 'assigned_to' ) ?>
+			</th>
+			<td>
+				<select name="handler_id" class="input-sm">
+					<option value="0"></option>
+					<?php print_assign_to_option_list( $t_suggested_handler_id, $t_bug->project_id ) ?>
+				</select>
+			</td>
+		</tr> -->
 <?php } ?>
 
 <?php
