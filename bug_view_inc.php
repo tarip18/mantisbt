@@ -69,6 +69,7 @@ require_api( 'bug_activity_api.php' );
 require_api( 'category_api.php' );
 require_api( 'columns_api.php' );
 require_api( 'compress_api.php' );
+require_once( 'core.php' );
 require_api( 'config_api.php' );
 require_api( 'constant_inc.php' );
 require_api( 'current_user_api.php' );
@@ -856,6 +857,151 @@ if( $t_flags['history_show'] && $f_history ) {
 	</div>
 <?php
 }
+
+
+// SLA Query
+$query1 = "SELECT date_modified FROM {bug_history} WHERE bug_id = $f_issue_id AND field_name = 'resolution'";
+$result1= db_query($query1);
+$num_records1 = db_num_rows( $result1 );
+$t_row1 = db_fetch_array( $result1 );
+
+$query2 = "SELECT date_modified FROM {bug_history} WHERE bug_id = $f_issue_id AND field_name = ' '";
+$result2= db_query($query2);
+$num_records2 = db_num_rows( $result2 );
+$t_row2 = db_fetch_array( $result2 );
+
+$query3 = "SELECT date_modified FROM {bug_history} WHERE bug_id = $f_issue_id AND field_name = 'handler_id' ";
+$result3= db_query($query3);
+$num_records3 = db_num_rows( $result3 );
+$t_row3 = db_fetch_array( $result3 );
+
+
+if ($num_records1 > 0) {
+    $resolution_datetime = date('Y-m-d H:i:s', $t_row1['date_modified']);
+}
+else{
+	$resolution_datetime = "NULL";
+}
+
+if ($num_records2 > 0) {
+    $new_datetime = date('Y-m-d H:i:s', $t_row2['date_modified']);
+}
+else{
+	$new_datetime = "NULL";
+}
+
+if ($num_records3 > 0) {
+    $response_datetime = date('Y-m-d H:i:s', $t_row3['date_modified']);
+}
+else{
+	$response_datetime = "NULL";
+}
+
+
+// Calculate resolution time if both dates are available
+if ($response_datetime !== "NULL" && $new_datetime !== "NULL") {
+    $response_time_seconds = strtotime($response_datetime) - strtotime($new_datetime);
+    $response_time = format_time($response_time_seconds);
+}
+else{
+	$response_time = "NULL";
+}
+
+if ($resolution_datetime !== "NULL" && $new_datetime !== "NULL") {
+    $resolution_time_seconds = strtotime($resolution_datetime) - strtotime($new_datetime);
+    $resolution_time = format_time($resolution_time_seconds);
+}
+else{
+	$resolution_time = "NULL";
+}
+
+// Function to format time in hours, minutes, and seconds
+function format_time($seconds) {
+    $hours = floor($seconds / 3600);
+    $minutes = floor(($seconds % 3600) / 60);
+    $seconds = $seconds % 60;
+
+    return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+}
+//SLA Table
+?>
+		<div class="col-md-12 col-xs-12">
+			<a id="sla"></a>
+			<div class="space-10"></div>
+<?php
+	$t_collapse_block = is_collapsed( 'sla' );
+	$t_block_css = $t_collapse_block ? 'collapsed' : '';
+	$t_block_icon = $t_collapse_block ? 'fa-chevron-down' : 'fa-chevron-up';
+?>
+<div id="sla" class="widget-box widget-color-blue2 <?php echo $t_block_css ?>">
+	<div class="widget-header widget-header-small">
+		<h4 class="widget-title lighter">
+			<?php print_icon( 'fa-sla', 'ace-icon' ); ?>
+			<?php echo lang_get( 'bug_sla' ) ?>
+		</h4>
+		<div class="widget-toolbar">
+			<a data-action="collapse" href="#">
+				<?php print_icon( $t_block_icon, '1 ace-icon bigger-125' ); ?>
+			</a>
+		</div>
+	</div>
+
+	<div class="widget-body">
+		<div class="widget-main no-padding">
+			<div class="table-responsive">
+<table class="table table-bordered table-condensed table-hover table-striped">
+	<thead>
+		<tr>
+			<th class="small-caption">
+				<?php echo lang_get( 'sla_id' ) ?>
+			</th>
+			<th class="small-caption">
+				<?php echo lang_get( 'new' ) ?>
+			</th>
+			<th class="small-caption">
+				<?php echo lang_get( 'rt' ) ?>
+			</th>
+			<th class="small-caption">
+				<?php echo lang_get( 'st' ) ?>
+			</th>
+			<th class="small-caption">
+				<?php echo lang_get( 'hasil_rt' ) ?>
+			</th>
+			<th class="small-caption">
+				<?php echo lang_get( 'hasil_st' ) ?>
+			</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td class="bug-id">
+				<?php echo ($t_issue_view['id_formatted'])?>
+			</td>
+			<td class="small-caption">
+				<?php echo $new_datetime ?>
+			</td>
+			<td class="small-caption">
+				<?php echo $response_datetime ?>
+			</td>
+			<td class="small-caption">
+				<?php echo $resolution_datetime ?>
+			</td>
+			<td class="small-caption">
+				<?php echo $response_time  ?>
+			</td>
+			<td class="small-caption">
+				<?php echo $resolution_time  ?>
+			</td>
+		</tr>
+	</tbody>
+</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?php	
 
 layout_page_end();
 
