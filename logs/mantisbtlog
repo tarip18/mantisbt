@@ -35864,3 +35864,18 @@ error:1416F086:SSL routines:tls_process_server_certificate:certificate verify fa
 2024-03-14 13:33 WIB FILTER filter_api.php:2493 filter_get_included_projects() Getting sub-projects for project id @P7
 2024-03-14 13:33 WIB FILTER filter_api.php:2493 filter_get_included_projects() Getting sub-projects for project id @P4
 2024-03-14 13:33 WIB FILTER filter_api.php:2505 filter_get_included_projects() project_ids after including sub-projects = @P7, @P4, @P8, @P6, @P5
+2024-03-14 14:03 WIB FILTER filter_api.php:2440 filter_get_included_projects() Simple Filter
+2024-03-14 14:03 WIB FILTER filter_api.php:2449 filter_get_included_projects() project_ids = @P7
+2024-03-14 14:03 WIB FILTER filter_api.php:2450 filter_get_included_projects() include sub-projects = 1
+2024-03-14 14:03 WIB FILTER filter_api.php:2493 filter_get_included_projects() Getting sub-projects for project id @P7
+2024-03-14 14:03 WIB FILTER filter_api.php:2505 filter_get_included_projects() project_ids after including sub-projects = @P7, @P8
+2024-03-14 14:03 WIB FILTER filter_api.php:2440 filter_get_included_projects() Simple Filter
+2024-03-14 14:03 WIB FILTER filter_api.php:2449 filter_get_included_projects() project_ids = @P7
+2024-03-14 14:03 WIB FILTER filter_api.php:2450 filter_get_included_projects() include sub-projects = 1
+2024-03-14 14:03 WIB FILTER filter_api.php:2493 filter_get_included_projects() Getting sub-projects for project id @P7
+2024-03-14 14:03 WIB FILTER filter_api.php:2505 filter_get_included_projects() project_ids after including sub-projects = @P7, @P8
+2024-03-14 14:03 WIB FILTER filter_api.php:2440 filter_get_included_projects() Simple Filter
+2024-03-14 14:03 WIB FILTER filter_api.php:2449 filter_get_included_projects() project_ids = @P7
+2024-03-14 14:03 WIB FILTER filter_api.php:2450 filter_get_included_projects() include sub-projects = 1
+2024-03-14 14:03 WIB FILTER filter_api.php:2493 filter_get_included_projects() Getting sub-projects for project id @P7
+2024-03-14 14:03 WIB FILTER filter_api.php:2505 filter_get_included_projects() project_ids after including sub-projects = @P7, @P8
