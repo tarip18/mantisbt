@@ -1144,7 +1144,7 @@ $s_site_settings_updated_msg = 'Site settings have been updated';
 # summary_page.php
 $s_summary_title = 'Summary';
 $s_summary_advanced_link = 'Advanced summary';
-$s_by_project = 'By Project';
+$s_by_project = 'By Client';
 $s_by_status = 'By Status';
 $s_by_date = 'By Date (days)';
 $s_by_severity = 'By Severity';
