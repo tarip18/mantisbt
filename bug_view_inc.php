@@ -955,7 +955,7 @@ function format_time($seconds) {
 			<th class="small-caption">
 				<?php echo lang_get( 'sla_id' ) ?>
 			</th>
-			<th class="small-caption">
+			<!-- <th class="small-caption">
 				<?php echo lang_get( 'new' ) ?>
 			</th>
 			<th class="small-caption">
@@ -963,7 +963,7 @@ function format_time($seconds) {
 			</th>
 			<th class="small-caption">
 				<?php echo lang_get( 'st' ) ?>
-			</th>
+			</th> -->
 			<th class="small-caption">
 				<?php echo lang_get( 'hasil_rt' ) ?>
 			</th>
@@ -978,14 +978,14 @@ function format_time($seconds) {
 			<td class="bug-id">
 				<?php echo ($t_issue_view['id_formatted'])?>
 			</td>
-			<td class="small-caption">
+			<!-- <td class="small-caption">
 				<?php echo $new_datetime ?>
 			</td>
 			<td class="small-caption">
 				<?php echo $response_datetime ?>
 			</td>
 			<td class="small-caption">
-				<?php echo $resolution_datetime ?>
+				<?php echo $resolution_datetime ?> -->
 			</td>
 			<td class="small-caption">
 				<?php echo $response_time  ?>
